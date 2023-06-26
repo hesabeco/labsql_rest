@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.app.web.entities.Bill;
 
 import link.softbond.entities.Problema;
 import link.softbond.repositorios.ProblemaRepository;
@@ -33,4 +37,9 @@ public class ProblemaController {
 		    }
 		    return problemaEstado;
 		}
+	@PostMapping
+	public Problema agregarProblema(@RequestBody Problema problema) {
+		problemaRepository.save(problema);
+		return problema;
+	}
 }
