@@ -14,7 +14,7 @@ public class Tabla implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	@Lob
 	private String descripcion;
@@ -23,17 +23,17 @@ public class Tabla implements Serializable {
 
 	//bi-directional many-to-one association to Problema
 	@ManyToOne
-	@JoinColumn(name="idproblema")
+	@JoinColumn(name="idproblema")//problema_id
 	private Problema problema;
 
 	public Tabla() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

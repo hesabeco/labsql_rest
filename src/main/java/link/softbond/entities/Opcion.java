@@ -15,9 +15,9 @@ public class Opcion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
-	private int examen;
+	private Integer examen;
 
 	private Timestamp fecha;
 
@@ -34,19 +34,19 @@ public class Opcion implements Serializable {
 	public Opcion() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getExamen() {
+	public Integer getExamen() {
 		return this.examen;
 	}
 
-	public void setExamen(int examen) {
+	public void setExamen(Integer examen) {
 		this.examen = examen;
 	}
 

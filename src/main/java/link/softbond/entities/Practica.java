@@ -15,9 +15,9 @@ public class Practica implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
-	private int estado;
+	private Integer estado;
 
 	private Timestamp fecha;
 
@@ -42,19 +42,19 @@ public class Practica implements Serializable {
 	public Practica() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getEstado() {
+	public Integer getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 

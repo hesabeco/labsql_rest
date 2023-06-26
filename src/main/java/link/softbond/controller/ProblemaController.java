@@ -15,6 +15,13 @@ import link.softbond.repositorios.ProblemaRepository;
 public class ProblemaController {
 	@Autowired
 	ProblemaRepository problemaRepository;
+	
+	
+	@GetMapping("/list")
+    public List<Problema> listarProblemas(){
+        return problemaRepository.findAll();
+    }
+	
 	@GetMapping("/list/activos")
 	public List<Problema> getProblemasActivos() {
 		List<Problema> todos= problemaRepository.findAll();
