@@ -15,9 +15,9 @@ public class Examen implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
-	private int cantidad;
+	private Integer cantidad;
 
 	private String descripcion;
 
@@ -25,23 +25,22 @@ public class Examen implements Serializable {
 
 	private Timestamp fechainicio;
 
-	//bi-directional many-to-one association to Problema
 	@ManyToOne
-	@JoinColumn(name="problema")
+	@JoinColumn(name="problema_id")
 	private Problema problemaBean;
 
 	public Examen() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getCantidad() {
+	public Integer getCantidad() {
 		return this.cantidad;
 	}
 

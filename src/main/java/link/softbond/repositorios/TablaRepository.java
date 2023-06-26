@@ -1,3 +1,4 @@
+
 package link.softbond.repositorios;
 
 import java.util.List;
@@ -13,3 +14,4 @@ public interface TablaRepository extends JpaRepository<Tabla, Integer> {
 	List<Tabla> findByProblema(Optional<Problema> problema);
 	
 }
+

@@ -27,18 +27,19 @@ public class ProblemaController {
 
 	@Autowired
 	TablaRepository tablaRepository;
-
+	
 	@GetMapping("/list")
 	public List<Problema> listarProblemas() {
 		return problemaRepository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public List<Problema> getProblemabyEstado(@PathVariable Integer estado) {
+	@GetMapping("/list/activos")
+	public List<Problema> getProblemasActivos() {
 		List<Problema> todos = problemaRepository.findAll();
 		List<Problema> problemaEstado = null;
+
 		for (Problema problema : todos) {
-			if (problema.getEstado() == (byte) 1) {
+			if (problema.getEstado() == ((byte) 1)) {
 				problemaEstado.add(problema);
 			}
 		}
@@ -52,26 +53,24 @@ public class ProblemaController {
 		if (problema != null) {
 			List<Tabla> tablasProblema = tablaRepository.findByProblema(problema);
 			for (Tabla tabla : tablasProblema) {
-	            if (tabla.getId()==(id_tabla)) {
-	            	List<Object> datosTabla = obtenerDatosTabla(tabla);
-	                HttpHeaders headers = new HttpHeaders();
-	                headers.add("Tabla", tabla.getNombre());
-	                return ResponseEntity.ok()
-	                        .headers(headers)
-	                        .body(datosTabla);
-	            }
-	        }
-	        return ResponseEntity.notFound().build();
+				if (tabla.getId() == (id_tabla)) {
+					List<Object> datosTabla = obtenerDatosTabla(tabla);
+					HttpHeaders headers = new HttpHeaders();
+					headers.add("Tabla", tabla.getNombre());
+					return ResponseEntity.ok().headers(headers).body(datosTabla);
+				}
+			}
+			return ResponseEntity.notFound().build();
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	private List<Object> obtenerDatosTabla(Tabla tabla) {
-	    List<Object> datosTabla = new ArrayList();
-	    datosTabla.add(tabla.getId());
-	    datosTabla.add(tabla.getDescripcion());
-	    datosTabla.add(tabla.getProblema());
-	    return datosTabla;
+		List<Object> datosTabla = new ArrayList();
+		datosTabla.add(tabla.getId());
+		datosTabla.add(tabla.getDescripcion());
+		datosTabla.add(tabla.getProblema());
+		return datosTabla;
 	}
 }

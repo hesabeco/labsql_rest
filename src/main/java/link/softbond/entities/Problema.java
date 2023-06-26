@@ -2,27 +2,26 @@ package link.softbond.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
-/**
- * The persistent class for the problema database table.
- * 
- */
 @Entity
 @NamedQuery(name="Problema.findAll", query="SELECT p FROM Problema p")
 public class Problema implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	@Lob
 	private String descripcion;
 
 	private String docente;
 
-	private byte estado;
+	private Byte estado;
 
 	private String nombre;
 
@@ -30,24 +29,27 @@ public class Problema implements Serializable {
 
 	//bi-directional many-to-one association to Consulta
 	@OneToMany(mappedBy="problema")
+	@JsonIgnore
 	private List<Consulta> consultas;
 
 	//bi-directional many-to-one association to Examen
 	@OneToMany(mappedBy="problemaBean")
+	@JsonIgnore
 	private List<Examen> examens;
 
 	//bi-directional many-to-one association to Tabla
 	@OneToMany(mappedBy="problema")
+	@JsonIgnore
 	private List<Tabla> tablas;
 
 	public Problema() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -67,11 +69,11 @@ public class Problema implements Serializable {
 		this.docente = docente;
 	}
 
-	public byte getEstado() {
+	public Byte getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(Byte estado) {
 		this.estado = estado;
 	}
 

@@ -15,11 +15,11 @@ public class Consulta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	private String descripcion;
 
-	private int estado;
+	private Integer estado;
 
 	@Lob
 	private String explicacion;
@@ -27,7 +27,7 @@ public class Consulta implements Serializable {
 	@Lob
 	private String explicsolucion;
 
-	private int numpracticas;
+	private Integer numpracticas;
 
 	@Lob
 	private String solucion;
@@ -55,11 +55,11 @@ public class Consulta implements Serializable {
 	public Consulta() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -71,11 +71,11 @@ public class Consulta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public int getEstado() {
+	public Integer getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 
@@ -95,11 +95,11 @@ public class Consulta implements Serializable {
 		this.explicsolucion = explicsolucion;
 	}
 
-	public int getNumpracticas() {
+	public Integer getNumpracticas() {
 		return this.numpracticas;
 	}
 
-	public void setNumpracticas(int numpracticas) {
+	public void setNumpracticas(Integer numpracticas) {
 		this.numpracticas = numpracticas;
 	}
 
