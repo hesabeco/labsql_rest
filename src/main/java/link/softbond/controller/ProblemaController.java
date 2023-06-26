@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import link.softbond.entities.Consulta;
 import link.softbond.entities.Problema;
 import link.softbond.entities.Tabla;
+import link.softbond.repositorios.ConsultaRepository;
 import link.softbond.repositorios.ProblemaRepository;
 import link.softbond.repositorios.TablaRepository;
 
@@ -32,6 +34,9 @@ public class ProblemaController {
 
 	@Autowired
 	TablaRepository tablaRepository;
+	
+	@Autowired
+	ConsultaRepository consultaRepository;
 	
 	@GetMapping("/list")
 	public List<Problema> listarProblemas() {
@@ -83,9 +88,16 @@ public class ProblemaController {
 		datosTabla.add(tabla.getProblema());
 		return datosTabla;
 	}
+	
 	@PostMapping
 	public Problema agregarProblema(@RequestBody Problema problema) {
 		problemaRepository.save(problema);
 		return problema;
+	}
+	
+	@GetMapping("/{id}/consultas")
+	public List<Consulta> listarConsultasProblema(@PathVariable Integer id){
+		Optional<Problema> problema = problemaRepository.findById(id);
+		return consultaRepository.findByProblema(problema);
 	}
 }
