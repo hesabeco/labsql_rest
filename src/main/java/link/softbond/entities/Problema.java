@@ -1,34 +1,159 @@
 package link.softbond.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
-import lombok.Data;
-@Data
+
+/**
+ * The persistent class for the problema database table.
+ * 
+ */
 @Entity
-@Table(name = "problema")
-public class Problema {
+@NamedQuery(name="Problema.findAll", query="SELECT p FROM Problema p")
+public class Problema implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	private int id;
 
-    @Column(name = "nombre", length = 100)
-    private String nombre;
+	@Lob
+	private String descripcion;
 
-    @Column(name = "descripcion", columnDefinition = "TEXT")
-    private String descripcion;
+	private String docente;
 
-    @Column(name = "docente", length = 50)
-    private String docente;
+	private byte estado;
 
-    @Column(name = "estado")
-    private Integer estado;
+	private String nombre;
 
-    @Column(name = "nombrebase", length = 50, columnDefinition = "VARCHAR(50) COMMENT 'Almacena el nombre en la base de datos de MySQL'")
-    private String nombreBase;
+	private String nombrebase;
+
+	//bi-directional many-to-one association to Consulta
+	@OneToMany(mappedBy="problema")
+	private List<Consulta> consultas;
+
+	//bi-directional many-to-one association to Examen
+	@OneToMany(mappedBy="problemaBean")
+	private List<Examen> examens;
+
+	//bi-directional many-to-one association to Tabla
+	@OneToMany(mappedBy="problema")
+	private List<Tabla> tablas;
+
+	public Problema() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getDocente() {
+		return this.docente;
+	}
+
+	public void setDocente(String docente) {
+		this.docente = docente;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombrebase() {
+		return this.nombrebase;
+	}
+
+	public void setNombrebase(String nombrebase) {
+		this.nombrebase = nombrebase;
+	}
+
+	public List<Consulta> getConsultas() {
+		return this.consultas;
+	}
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
+	}
+
+	public Consulta addConsulta(Consulta consulta) {
+		getConsultas().add(consulta);
+		consulta.setProblema(this);
+
+		return consulta;
+	}
+
+	public Consulta removeConsulta(Consulta consulta) {
+		getConsultas().remove(consulta);
+		consulta.setProblema(null);
+
+		return consulta;
+	}
+
+	public List<Examen> getExamens() {
+		return this.examens;
+	}
+
+	public void setExamens(List<Examen> examens) {
+		this.examens = examens;
+	}
+
+	public Examen addExamen(Examen examen) {
+		getExamens().add(examen);
+		examen.setProblemaBean(this);
+
+		return examen;
+	}
+
+	public Examen removeExamen(Examen examen) {
+		getExamens().remove(examen);
+		examen.setProblemaBean(null);
+
+		return examen;
+	}
+
+	public List<Tabla> getTablas() {
+		return this.tablas;
+	}
+
+	public void setTablas(List<Tabla> tablas) {
+		this.tablas = tablas;
+	}
+
+	public Tabla addTabla(Tabla tabla) {
+		getTablas().add(tabla);
+		tabla.setProblema(this);
+
+		return tabla;
+	}
+
+	public Tabla removeTabla(Tabla tabla) {
+		getTablas().remove(tabla);
+		tabla.setProblema(null);
+
+		return tabla;
+	}
 }
