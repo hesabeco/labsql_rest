@@ -43,7 +43,6 @@ public class ProblemaController {
         return problemaRepository.findByEstado(estado);
     }
 	
-	
 	@GetMapping("/list/activos")
 	public List<Problema> getProblemasActivos() {
 		List<Problema> todos = problemaRepository.findAll();
