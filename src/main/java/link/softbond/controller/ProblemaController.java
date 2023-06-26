@@ -24,7 +24,7 @@ public class ProblemaController {
 	
 	@GetMapping("/list/activos")
 	public List<Problema> getProblemasActivos() {
-		List<Problema> todos= problemaRepository.findAll();
+		List<Problema> todos= problemaRepository.findAll();	
 		List<Problema> problemaEstado = null;
 		 for (Problema problema : todos) {
 		        if (problema.getEstado()==((byte)1)) {
