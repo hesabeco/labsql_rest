@@ -49,4 +49,10 @@ public class ExamenController {
 		examenRepository.save(examen);
 		return examen;
 	}
+
+	@GetMapping("/examenes/{id}/generar")
+	public List<Examen> generarPreguntasExamen(@PathVariable("id") Integer idExamen) {
+		List<Examen> examen = examenRepository.generarPreguntas(idExamen);
+		return examen;
+	}
 }
