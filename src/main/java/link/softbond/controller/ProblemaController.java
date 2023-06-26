@@ -61,6 +61,7 @@ public class ProblemaController {
 		return problemaEstado;
 	}
 	
+	
 	@GetMapping("/list/inactivos")
 	public List<Problema> getProblemasInactivos() {
 		List<Problema> todos = problemaRepository.findAll();
