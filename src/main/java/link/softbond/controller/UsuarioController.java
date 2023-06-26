@@ -1,13 +1,17 @@
 package link.softbond.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 
 import link.softbond.entities.Usuario;
@@ -47,5 +51,15 @@ public class UsuarioController {
     	usuario.setEstado("I"); //I -> inactivo
 		usuarioRepository.save(usuario);
 		return usuario;
+	}
+    
+    @DeleteMapping("/{id}")
+	public String deleteUsuariobyId(@PathVariable Integer id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		if (!usuario.isPresent()) {
+			return "El usuario con el id " + id + " no existe";
+		}
+		usuarioRepository.deleteById(id);
+		return "Se ha eliminado exitosamente el usuario con el id: " + id;
 	}
 }
