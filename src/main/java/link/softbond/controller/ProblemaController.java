@@ -11,14 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-import com.app.web.entities.Bill;
-
-import link.softbond.entities.Problema;
-import link.softbond.repositorios.ProblemaRepository;
-
-=======
->>>>>>> branch 'master' of https://github.com/hesabeco/labsql_rest.git
 @RestController
 @RequestMapping("/problemas")
 public class ProblemaController {
