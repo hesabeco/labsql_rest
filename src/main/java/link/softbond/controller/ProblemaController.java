@@ -36,7 +36,7 @@ public class ProblemaController {
         return problemaRepository.findByEstado(estado);
     }
 	
-	/*
+
 	@GetMapping("/list/activos")
 	public List<Problema> getProblemasActivos() {
 		List<Problema> todos= problemaRepository.findAll();	
@@ -48,13 +48,12 @@ public class ProblemaController {
 		    }
 		    return problemaEstado;
 		}
-<<<<<<< HEAD
+
 	@PostMapping
 	public Problema agregarProblema(@RequestBody Problema problema) {
 		problemaRepository.save(problema);
 		return problema;
 	}
-=======
+
 		*/
->>>>>>> branch 'master' of https://github.com/hesabeco/labsql_rest.git
 }
