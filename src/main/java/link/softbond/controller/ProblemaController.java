@@ -55,6 +55,12 @@ public class ProblemaController {
 		}
 		return problemaEstado;
 	}
+	
+	@GetMapping("/{id_problema}/tablas")
+	public List<Tabla> getProblemaTabla(@PathVariable("id_problema") int idProblema){
+		    List<Tabla> tablas = problemaRepository.getTablasPorIdProblema(idProblema);
+		    return tablas;
+	}
 
 	@GetMapping("/{id_problema}/tablas/{id_tabla}/datos")
 	public ResponseEntity<List<Object>> listarDatosTablas(@PathVariable("{id}") Integer id_problema,
