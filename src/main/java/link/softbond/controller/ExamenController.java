@@ -43,7 +43,7 @@ public class ExamenController {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return opcionRepositry.findByUsuarioBean(usuario);
 	}
-	
+
 	@PostMapping
 	public Examen agregarExamen(@RequestBody Examen examen) {
 		examenRepository.save(examen);
