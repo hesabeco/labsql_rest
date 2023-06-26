@@ -25,9 +25,8 @@ public class Examen implements Serializable {
 
 	private Timestamp fechainicio;
 
-	//bi-directional many-to-one association to Problema
 	@ManyToOne
-	@JoinColumn(name="problema_id")
+	@JoinColumn(name="id")
 	private Problema problemaBean;
 
 	public Examen() {

@@ -8,10 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 
-/**
- * The persistent class for the problema database table.
- * 
- */
 @Entity
 @NamedQuery(name="Problema.findAll", query="SELECT p FROM Problema p")
 public class Problema implements Serializable {

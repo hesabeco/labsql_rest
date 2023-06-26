@@ -21,7 +21,6 @@ public class Tabla implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Problema
 	@ManyToOne
 	@JoinColumn(name="idproblema")//problema_id
 	private Problema problema;
