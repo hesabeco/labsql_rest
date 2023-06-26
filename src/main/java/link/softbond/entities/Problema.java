@@ -21,7 +21,7 @@ public class Problema implements Serializable {
 
 	private String docente;
 
-	private Byte estado;
+	private Integer estado;
 
 	private String nombre;
 
@@ -69,11 +69,11 @@ public class Problema implements Serializable {
 		this.docente = docente;
 	}
 
-	public Byte getEstado() {
+	public Integer getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(Byte estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 
