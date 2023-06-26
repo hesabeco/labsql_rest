@@ -61,6 +61,19 @@ public class ProblemaController {
 		return problemaEstado;
 	}
 	
+	@GetMapping("/list/inactivos")
+	public List<Problema> getProblemasInactivos() {
+		List<Problema> todos = problemaRepository.findAll();
+		List<Problema> problemaEstado = null;
+
+		for (Problema problema : todos) {
+			if (problema.getEstado() == ((byte) 0)) {
+				problemaEstado.add(problema);
+			}
+		}
+		return problemaEstado;
+	}
+	
 	/*
 	@GetMapping("/{id_problema}/tablas")
 	public List<Tabla> getProblemaTabla(@PathVariable("id_problema") int idProblema){
