@@ -1,5 +1,6 @@
 package link.softbond.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpHeaders;
 
 import link.softbond.entities.Problema;
 import link.softbond.entities.Tabla;
@@ -45,21 +46,32 @@ public class ProblemaController {
 	}
 
 	@GetMapping("/{id_problema}/tablas/{id_tabla}/datos")
-	public ResponseEntity<Tabla> listarDatosTablas(@PathVariable("{id}") Integer id_problema,
+	public ResponseEntity<List<Object>> listarDatosTablas(@PathVariable("{id}") Integer id_problema,
 			@PathVariable("{id_tabla}") Integer id_tabla) {
 		Optional<Problema> problema = problemaRepository.findById(id_problema);
 		if (problema != null) {
 			List<Tabla> tablasProblema = tablaRepository.findByProblema(problema);
 			for (Tabla tabla : tablasProblema) {
 	            if (tabla.getId()==(id_tabla)) {
-	                return new ResponseEntity<>(tabla, HttpStatus.OK);
-	            }else {
-	            	return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	            	List<Object> datosTabla = obtenerDatosTabla(tabla);
+	                HttpHeaders headers = new HttpHeaders();
+	                headers.add("Tabla", tabla.getNombre());
+	                return ResponseEntity.ok()
+	                        .headers(headers)
+	                        .body(datosTabla);
 	            }
 	        }
+	        return ResponseEntity.notFound().build();
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		return null;
+	}
+	
+	private List<Object> obtenerDatosTabla(Tabla tabla) {
+	    List<Object> datosTabla = new ArrayList();
+	    datosTabla.add(tabla.getId());
+	    datosTabla.add(tabla.getDescripcion());
+	    datosTabla.add(tabla.getProblema());
+	    return datosTabla;
 	}
 }
