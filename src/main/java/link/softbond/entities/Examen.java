@@ -26,7 +26,7 @@ public class Examen implements Serializable {
 	private Timestamp fechainicio;
 
 	@ManyToOne
-	@JoinColumn(name="problema_id")
+	@JoinColumn(name="id")
 	private Problema problemaBean;
 
 	public Examen() {
