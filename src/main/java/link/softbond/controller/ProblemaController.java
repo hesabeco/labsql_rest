@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import link.softbond.entities.Consulta;
+import link.softbond.entities.Examen;
 import link.softbond.entities.Problema;
 import link.softbond.entities.Tabla;
 import link.softbond.repositorios.ConsultaRepository;
+import link.softbond.repositorios.ExamenRepository;
 import link.softbond.repositorios.ProblemaRepository;
 import link.softbond.repositorios.TablaRepository;
 
@@ -37,6 +39,9 @@ public class ProblemaController {
 	
 	@Autowired
 	ConsultaRepository consultaRepository;
+	
+	@Autowired
+	ExamenRepository examenRepository;
 	
 	@GetMapping("/list")
 	public List<Problema> listarProblemas() {
@@ -61,13 +66,6 @@ public class ProblemaController {
 		return problemaEstado;
 	}
 	
-	/*
-	@GetMapping("/{id_problema}/tablas")
-	public List<Tabla> getProblemaTabla(@PathVariable("id_problema") int idProblema){
-		    List<Tabla> tablas = problemaRepository.getTablasPorIdProblema(idProblema);
-		    return tablas;
-	} 
-	*/
 	@GetMapping("{id_problema}/tablas")
     public List<Tabla> listProblemaTabla(@PathVariable Integer id) {
         Problema problems = problemaRepository.findById(id).get();
@@ -112,5 +110,11 @@ public class ProblemaController {
 	public List<Consulta> listarConsultasProblema(@PathVariable Integer id){
 		Optional<Problema> problema = problemaRepository.findById(id);
 		return consultaRepository.findByProblema(problema);
+	}
+	
+	@GetMapping("/{id}/examenes")
+	public List<Examen> listarExamenesProblema(@PathVariable Integer id){
+		Optional<Problema> problema = problemaRepository.findById(id);
+		return examenRepository.findByProblemaBean(problema);
 	}
 }
